@@ -40,6 +40,7 @@ export default function App() {
                   </Draggable>
                 )
               })}
+              {provided.placeholder}
               {/* </Grid> */}
             </div>
           )}
