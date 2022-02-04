@@ -21,37 +21,37 @@ export default function App() {
         <Droppable droppableId="gridItems">
           {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef}>
-              {/* <Grid container spacing={2}> */}
-              {gridItems.map((values: dummyDataType, idx: number) => {
-                return (
-                  <Draggable
-                    draggableId={values.id}
-                    index={idx}
-                    key={values.val}
-                  >
-                    {(provided) => (
-                      <div
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        ref={provided.innerRef}
-                      >
-                        {/* <Grid item xs={4}> */}
-                        <Box
-                          sx={{
-                            color: 'primary.contrastText',
-                            backgroundColor: 'primary.main'
-                          }}
-                        >
-                          {values.val}
-                        </Box>
-                        {/* </Grid> */}
-                      </div>
-                    )}
-                  </Draggable>
-                )
-              })}
-              {provided.placeholder}
-              {/* </Grid> */}
+              <Grid container spacing={2}>
+                {gridItems.map((values: dummyDataType, idx: number) => {
+                  return (
+                    <Draggable
+                      draggableId={values.id}
+                      index={idx}
+                      key={values.val}
+                    >
+                      {(provided) => (
+                        <Grid item xs={4}>
+                          <div
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            ref={provided.innerRef}
+                          >
+                            <Box
+                              sx={{
+                                color: 'primary.contrastText',
+                                backgroundColor: 'primary.main'
+                              }}
+                            >
+                              {values.val}
+                            </Box>
+                          </div>
+                        </Grid>
+                      )}
+                    </Draggable>
+                  )
+                })}
+                {provided.placeholder}
+              </Grid>
             </div>
           )}
         </Droppable>
