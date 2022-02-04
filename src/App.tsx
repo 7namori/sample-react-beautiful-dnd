@@ -1,6 +1,6 @@
 import './styles.css'
 import { dummyData, dummyDataType } from './dummyData'
-import { Box, Grid } from '@mui/material'
+import { Box } from '@mui/material'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { useState } from 'react'
 
@@ -21,37 +21,33 @@ export default function App() {
         <Droppable droppableId="gridItems">
           {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef}>
-              <Grid container spacing={2}>
-                {gridItems.map((values: dummyDataType, idx: number) => {
-                  return (
-                    <Draggable
-                      draggableId={values.id}
-                      index={idx}
-                      key={values.val}
-                    >
-                      {(provided) => (
-                        <Grid item xs={4}>
-                          <div
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            ref={provided.innerRef}
-                          >
-                            <Box
-                              sx={{
-                                color: 'primary.contrastText',
-                                backgroundColor: 'primary.main'
-                              }}
-                            >
-                              {values.val}
-                            </Box>
-                          </div>
-                        </Grid>
-                      )}
-                    </Draggable>
-                  )
-                })}
-                {provided.placeholder}
-              </Grid>
+              {gridItems.map((values: dummyDataType, idx: number) => {
+                return (
+                  <Draggable
+                    draggableId={values.id}
+                    index={idx}
+                    key={values.val}
+                  >
+                    {(provided) => (
+                      <div
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        ref={provided.innerRef}
+                      >
+                        <Box
+                          sx={{
+                            color: 'primary.contrastText',
+                            backgroundColor: 'primary.main'
+                          }}
+                        >
+                          {values.val}
+                        </Box>
+                      </div>
+                    )}
+                  </Draggable>
+                )
+              })}
+              {provided.placeholder}
             </div>
           )}
         </Droppable>
