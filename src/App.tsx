@@ -1,7 +1,7 @@
 import './styles.css'
 import { dummyData, dummyDataType } from './dummyData'
 import { Box, Grid } from '@mui/material'
-import { DragDropContext, Droppable } from 'react-beautiful-dnd'
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 
 export default function App() {
   return (
@@ -11,22 +11,36 @@ export default function App() {
         <Droppable droppableId="gridItems">
           {(provided) => (
             <div {...provided.droppableProps} ref={provided.innerRef}>
-              <Grid container spacing={2}>
-                {dummyData.map((values: dummyDataType, idx: number) => {
-                  return (
-                    <Grid key={idx} item xs={4}>
-                      <Box
-                        sx={{
-                          color: 'primary.contrastText',
-                          backgroundColor: 'primary.main'
-                        }}
+              {/* <Grid container spacing={2}> */}
+              {dummyData.map((values: dummyDataType, idx: number) => {
+                return (
+                  <Draggable
+                    draggableId={values.id}
+                    index={idx}
+                    key={values.val}
+                  >
+                    {(provided) => (
+                      <div
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        ref={provided.innerRef}
                       >
-                        {values.val}
-                      </Box>
-                    </Grid>
-                  )
-                })}
-              </Grid>
+                        {/* <Grid item xs={4}> */}
+                        <Box
+                          sx={{
+                            color: 'primary.contrastText',
+                            backgroundColor: 'primary.main'
+                          }}
+                        >
+                          {values.val}
+                        </Box>
+                        {/* </Grid> */}
+                      </div>
+                    )}
+                  </Draggable>
+                )
+              })}
+              {/* </Grid> */}
             </div>
           )}
         </Droppable>
